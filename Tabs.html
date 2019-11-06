@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Tabs</title>
+</head>
+<body>
+
+    <tab-panel>
+        <div data-tabname="one">Tab one</div>
+        <div data-tabname="two">Tab two</div>
+        <div data-tabname="three">Tab three</div>
+    </tab-panel>
+    <script>
+        'use strict';
+        const asTabs = (node) => {
+            const tabs = node.querySelectorAll('div');
+            for (let tab of tabs) {
+                const button = document.createElement('button');
+                button.innerHTML = tab.dataset.tabname;
+                button.addEventListener('click', e => {
+                    for (let tab of tabs) {
+                        tab.classList.add('hidden');
+                    }
+                    tab.classList.toggle('hidden');
+
+                });
+                node.insertBefore(button, tab);
+            }
+        };
+        asTabs(document.querySelector('tab-panel'));
+    </script>
+</body>
+</html>

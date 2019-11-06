@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>MouseTrail</title>
+    <style>
+        .trail {
+            position: absolute;
+            height: 6px;
+            width: 6px;
+            border-radius: 3px;
+            background: teal;
+        }
+
+        body {
+            margin: 0;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let trailArray = [];
+        let mouseTrail = (e) => {
+            let trail = document.createElement('div')
+            trail.className = 'trail';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.querySelector('body').appendChild(trail);
+            trailArray.push(trail);
+            if (trailArray.length > 15) {
+                document.querySelector('body').removeChild(trailArray[0]);
+                trailArray.shift();
+            }
+        }
+        document.addEventListener('mousemove', mouseTrail);
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+
+    <title>Ballon</title>
+</head>
+<body>
+    <p>🎈</p>
+    <script>
+        let balloon = document.querySelector('p');
+        balloon.style.fontSize = '10px';
+
+        document.addEventListener("keydown", ev => {
+            ev.preventDefault();
+            let balloonSize = parseInt(balloon.style.fontSize) * 1.0;
+            if (balloonSize < 100) {
+                if (ev.key == 'ArrowUp') {
+                    balloonSize *= 1.1;
+                    balloon.style.fontSize = balloonSize + 'px';
+                    if (balloonSize >= 100) {
+                        balloon.innerHTML = '💥';
+                    }
+                }
+                else if (ev.key == 'ArrowDown') {
+                    balloonSize /= 1.1;
+                    balloon.style.fontSize = balloonSize + 'px';
+                }
+            }
+        })
+    </script>
+</body>
+</html>
